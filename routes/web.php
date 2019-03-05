@@ -11,22 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['as' => 'home', function () {
+    return view('home');
+}]);
 
 Route::get('/contacto',['as' => 'contacto', function (){
     return "contacto";
 }]);
 
-Route::get('/saludo/{nombre?}',function ($nombre = "Invitado"){
-    return "saludos $nombre";
-})->where('nombre',"[A-Za-z]+");
+Route::get('/saludo/{nombre?}',['as' => 'saludo', function ($nombre = "Invitado"){
+    //return view('saludo', ['nombre' => $nombre]);
+    //return view('saludo')->with(['nombre'=>$nombre]);
+    return view('saludo', compact('nombre'));
+}])->where('nombre',"[A-Za-z]+");
 
 Route::get('urls',function(){
-    echo "<a href=". route('contacto') .">Contacto</a><br>";
-    echo "<a href=". route('contacto') .">Contacto</a><br>";
-    echo "<a href=". route('contacto') .">Contacto</a><br>";
-    echo "<a href=". route('contacto') .">Contacto</a><br>";
-    echo "<a href=". route('contacto') .">Contacto</a><br>";
+    return view('home');
 });
