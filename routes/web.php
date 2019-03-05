@@ -16,13 +16,21 @@ Route::get('/', ['as' => 'home', function () {
 }]);
 
 Route::get('/contacto',['as' => 'contacto', function (){
-    return "contacto";
+    return view('contacto');
 }]);
 
 Route::get('/saludo/{nombre?}',['as' => 'saludo', function ($nombre = "Invitado"){
     //return view('saludo', ['nombre' => $nombre]);
     //return view('saludo')->with(['nombre'=>$nombre]);
-    return view('saludo', compact('nombre'));
+    $html = "<h2>Contenido HTML</h2>";
+    $consolas = [
+        "XBOX ONE",
+        "Play Station 4",
+        "Nintendo Switch"
+    ];
+    $celulares = [
+    ];
+    return view('saludo', compact('nombre','html','consolas','celulares'));
 }])->where('nombre',"[A-Za-z]+");
 
 Route::get('urls',function(){
